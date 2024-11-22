@@ -1,14 +1,30 @@
+import 'package:dom_control/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key : key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController = TextEditingController();
+
+  void _login() {
+    String username = _usernameController.text;
+
+    // Navegar para a tela inicial, passando o username como argumento
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomePage(username: username),
+      ),
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,29 +34,21 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/logo_DOM.png',
+              Image.asset('assets/images/logo_DOM.png',
               width: 2000,
               height: 200,
               ),
-            SizedBox(height: 25,),
-            // hello again!
-            // Text(
-            //   'Hello Again!',
-            //   style: GoogleFonts.bebasNeue(
-            //     fontSize: 52,
-            //   ),
-            // ),
-            // SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 25,),
+            const Text(
               'Welcome back, you\'ve been missed!',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
               ),
             ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
 
-              // email textfield
+              // username textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -52,15 +60,16 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _usernameController,
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Email',
+                        hintText: 'Username',
                       ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
 
               // password textfield
@@ -72,8 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                     border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 20.0),
                     child: TextField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -84,48 +93,31 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // sinh in button
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Center(
-                      child: Text(
-                          'Sign In',
-                        style: TextStyle(
-                            color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        ),
-                      )
-                  ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: ElevatedButton(
+              onPressed: _login, // Call the login function when pressed
+              child: const Text(
+                'Login',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
               ),
-              SizedBox(height: 25),
-              
-              // not a menber? register now!
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Not a member?',
-                style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),),
-                  Text(' Register now!',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                ],
-              )
-          ],
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: const EdgeInsets.all(20.0),
+              ),
+            ),
+          ),
+            ],
           ),
         ),
       ),
