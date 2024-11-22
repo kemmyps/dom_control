@@ -99,7 +99,14 @@ class _LoginPageState extends State<LoginPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: ElevatedButton(
-              onPressed: _login, // Call the login function when pressed
+              onPressed: _login,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                padding: const EdgeInsets.all(20.0),
+              ), // Call the login function when pressed
               child: const Text(
                 'Login',
                 style: TextStyle(
@@ -107,13 +114,6 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                padding: const EdgeInsets.all(20.0),
               ),
             ),
           ),
