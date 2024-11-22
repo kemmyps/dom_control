@@ -34,6 +34,8 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
+
+              //Barra de pesquisa
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: TextField(
@@ -49,6 +51,13 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Adicione a ação desejada aqui
+        },
+        backgroundColor: Colors.red,
+        child: const Icon(Icons.add),
       ),
     );
   }
