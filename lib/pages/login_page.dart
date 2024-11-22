@@ -117,6 +117,40 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
+              const SizedBox(height: 10),
+
+              // New user section
+              GestureDetector(
+                onTap: () {
+                  // Navigate to another page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(username: '',), //TODO:colocar rota New user section
+                    ),
+                  );
+                },
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'New User?',
+                      style: TextStyle(
+                        color: Colors.white,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    SizedBox(width: 5), // Spacing between texts
+                    Text(
+                      'Create Account',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
