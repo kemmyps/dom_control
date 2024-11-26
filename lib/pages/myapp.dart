@@ -1,4 +1,4 @@
-import 'package:dom_control/pages/home_page.dart';
+import 'package:dom_control/pages/screens/home_page/home_page.dart';
 import 'package:dom_control/pages/theme.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,6 @@
-import 'package:dom_control/pages/home_page.dart';
+import 'package:dom_control/pages/screens/home_page/home_page.dart';
+import 'package:dom_control/pages/new_user_screen.dart';
+import 'package:dom_control/pages/services/firestore.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
+  final FirestoreService firestoreService = FirestoreService();
 
   void _login() {
     String username = _usernameController.text;
@@ -18,7 +21,10 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => HomePage(username: username),
+        builder: (context) => HomePage(
+          username: username,
+          firestoreService: firestoreService,
+        ),
       ),
     );
   }
@@ -123,12 +129,12 @@ class _LoginPageState extends State<LoginPage> {
               GestureDetector(
                 onTap: () {
                   // Navigate to another page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(username: '',), //TODO:colocar rota New user section
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => NewUserScreen(),
+                  //   ),
+                  // );
                 },
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
