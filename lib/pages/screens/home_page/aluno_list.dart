@@ -72,7 +72,7 @@ class AlunoList extends StatelessWidget {
                         );
                       },
                     ),
-                    const Spacer(),
+
                     IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () async {
