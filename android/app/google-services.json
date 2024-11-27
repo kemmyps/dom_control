@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "933482734051",
+    "project_id": "dom-control",
+    "storage_bucket": "dom-control.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933482734051:android:9bd17791c3e8d59d4e00d6",
+        "android_client_info": {
+          "package_name": "com.dom_control.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgxXyDxUnj-QcbNWkOs79JXrMdXDVDox0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
