@@ -1,5 +1,4 @@
-import 'package:dom_control/pages/screens/home_page/home_page.dart';
-import 'package:dom_control/pages/theme.dart';
+import 'package:dom_control/pages/myTheme.dart';
 import 'package:flutter/material.dart';
 
 import 'login_page.dart';
@@ -15,7 +14,6 @@ class MyApp extends StatelessWidget {
       theme: myTheme,
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
-      //home: HomePage(username: '',),
     );
   }
 }
