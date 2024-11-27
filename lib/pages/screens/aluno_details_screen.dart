@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dom_control/pages/screens/home_page/aluno_list_tile.dart';
 import 'package:dom_control/pages/services/firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,9 @@ class AlunoDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalhes do Aluno ${aluno.nameStudent}'),
+        title: Text('Detalhes do Aluno ${aluno.nameStudent}',
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
