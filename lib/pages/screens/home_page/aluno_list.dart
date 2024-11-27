@@ -72,6 +72,32 @@ class AlunoList extends StatelessWidget {
                         );
                       },
                     ),
+                    const Spacer(),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () async {
+                        bool confirm = await showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text('Confirmar Exclusão'),
+                            content: Text('Tem certeza que deseja excluir o aluno ${aluno.nameStudent}?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(false),
+                                child: Text('Cancelar'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(true),
+                                child: Text('Excluir'),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (confirm) {
+                          await firestoreService.deleteAluno(aluno.id!);
+                        }
+                      },
+                    ),
                   ],
                 ),
                 leading: const CircleAvatar(

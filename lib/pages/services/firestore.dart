@@ -78,12 +78,16 @@ class FirestoreService {
     }
     return null;
   }
-
+//escuta a coleção 'alunos' e, sempre que houver alterações, retorna uma lista atualizada de objetos .
   Stream<List<AlunoFirestore>> getAlunosStream() {
     return _db.collection('alunos').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         return AlunoFirestore.fromMap(doc.data()!, doc.id);
       }).toList();
     });
+  }
+// Deletar aluno
+  Future<void> deleteAluno(String id) async {
+    await _db.collection('alunos').doc(id).delete();
   }
 }
