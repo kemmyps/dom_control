@@ -13,9 +13,16 @@ AppBarTheme _buildAppBarTheme() {
   return const AppBarTheme(
     backgroundColor: primaryColor,
     titleTextStyle: TextStyle(
-      fontSize: 40,
+      fontSize: 20,
       fontWeight: bold,
       color: Colors.white,
+      shadows: [
+        Shadow(
+          blurRadius: 7.0,
+          color: Colors.black,
+          offset: Offset(0, 2),
+        ),
+      ],
     ),
   );
 }
