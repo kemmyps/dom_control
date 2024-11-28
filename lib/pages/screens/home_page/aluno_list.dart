@@ -72,7 +72,6 @@ class AlunoList extends StatelessWidget {
                         );
                       },
                     ),
-
                     IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () async {
@@ -94,7 +93,7 @@ class AlunoList extends StatelessWidget {
                           ),
                         );
                         if (confirm) {
-                          await firestoreService.deleteAluno(aluno.id!);
+                          await firestoreService.deleteAluno(aluno.id);
                         }
                       },
                     ),

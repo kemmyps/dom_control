@@ -1,7 +1,7 @@
+import 'package:dom_control/pages/myTheme.dart';
 import 'package:dom_control/pages/screens/home_page/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:dom_control/pages/services/firestore.dart';
-
 import 'add_aluno_button.dart';
 import 'aluno_list.dart';
 
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               UserInfo(username: widget.username),
               const SizedBox(height: 5.0),
-              SearchBar(),
+              buildSearchBar(),
               const SizedBox(height: 10.0),
               AlunoList(firestoreService: widget.firestoreService),
             ],
