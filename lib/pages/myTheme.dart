@@ -1,3 +1,4 @@
+import 'package:dom_control/pages/screens/home_page/searchBar/search_bar_controller.dart';
 import 'package:flutter/material.dart';
 
 const Color primaryColor = Colors.red;
@@ -52,10 +53,11 @@ TextTheme _buildTextTheme() {
   );
 }
 
-Padding buildSearchBar() {
+Padding buildSearchBar(SearchBarController searchBarController) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
     child: TextField(
+      controller: searchBarController.searchController,
       decoration: InputDecoration(
         hintText: 'Pesquisar alunos', // Texto de dica
         prefixIcon: Icon(
