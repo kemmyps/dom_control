@@ -5,8 +5,9 @@ import '../aluno_details_screen.dart';
 
 class AlunoList extends StatelessWidget {
   final FirestoreService firestoreService;
+  final String searchText;
 
-  const AlunoList({super.key, required this.firestoreService});
+  const AlunoList({super.key, required this.firestoreService, required this.searchText});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,22 @@ class AlunoList extends StatelessWidget {
           return const Center(child: Text('No students found'));
         }
 
+        final filteredAlunos = alunos.where((aluno) {
+          final nameLower = aluno.nameStudent.toLowerCase();
+          final searchLower = searchText.toLowerCase();
+          return nameLower.contains(searchLower);
+        }).toList();
+
+        if (filteredAlunos.isEmpty) {
+          return const Center(child: Text('No students found'));
+        }
+
         return ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: alunos.length,
+          itemCount: filteredAlunos.length,
           itemBuilder: (context, index) {
-            final aluno = alunos[index];
+            final aluno = filteredAlunos[index];
 
             return Card(
               shape: RoundedRectangleBorder(
@@ -93,7 +104,7 @@ class AlunoList extends StatelessWidget {
                           ),
                         );
                         if (confirm) {
-                          await firestoreService.deleteAluno(aluno.id);
+                          await firestoreService.deleteAluno(aluno.id!);
                         }
                       },
                     ),
