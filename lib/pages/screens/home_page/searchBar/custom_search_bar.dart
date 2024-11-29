@@ -19,7 +19,7 @@ class CustomSearchBar extends StatelessWidget {
             color: Colors.red, // Cor do ícone de pesquisa
           ),
           filled: true,
-          fillColor: Colors.white, // Cor de fundo do campo de texto
+          fillColor: Colors.white70, // Cor de fundo do campo de texto
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)), // Bordas arredondadas
             borderSide: BorderSide.none, // Remove a borda padrão

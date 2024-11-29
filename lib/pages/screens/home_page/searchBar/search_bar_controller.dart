@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 class SearchBarController extends ChangeNotifier {
-  final TextEditingController searchController = TextEditingController();
-  String _searchText = ' ';
+  final TextEditingController _searchController = TextEditingController();
 
-  SearchBarController() {
-    searchController.addListener(() {
-      _searchText = searchController.text;
-      notifyListeners();
-    });
+  String get searchText => _searchController.text;
+
+  TextEditingController get searchController => _searchController;
+
+  void updateSearchText(String newText) {
+    _searchController.text = newText;
+    notifyListeners();
   }
 
-  String get searchText => _searchText;
+  bool get isSearchTextEmpty => _searchController.text.isEmpty;
 
   @override
   void dispose() {
-    searchController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 }

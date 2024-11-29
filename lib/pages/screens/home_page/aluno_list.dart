@@ -6,8 +6,9 @@ import '../aluno_details_screen.dart';
 class AlunoList extends StatelessWidget {
   final FirestoreService firestoreService;
   final String searchText;
+  final bool showAll;
 
-  const AlunoList({super.key, required this.firestoreService, required this.searchText});
+  const AlunoList({super.key, required this.firestoreService, required this.searchText, required this.showAll});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class AlunoList extends StatelessWidget {
           return const Center(child: Text('No students found'));
         }
 
-        final filteredAlunos = alunos.where((aluno) {
+        final filteredAlunos = (showAll || searchText == null || searchText.isEmpty)
+            ? alunos
+            : alunos.where((aluno) {
           final nameLower = aluno.nameStudent.toLowerCase();
           final searchLower = searchText.toLowerCase();
           return nameLower.contains(searchLower);
@@ -104,7 +107,7 @@ class AlunoList extends StatelessWidget {
                           ),
                         );
                         if (confirm) {
-                          await firestoreService.deleteAluno(aluno.id!);
+                          await firestoreService.deleteAluno(aluno.id);
                         }
                       },
                     ),

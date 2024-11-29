@@ -27,6 +27,7 @@ class AlunoDetailsScreen extends StatelessWidget {
               title: 'Nome Completo',
               subtitle: aluno.nameStudent,
             ),
+            Divider(color: Colors.red),
             AlunoListTile(
               leading: CircleAvatar(
                 child: Icon(Icons.auto_graph),
@@ -34,6 +35,7 @@ class AlunoDetailsScreen extends StatelessWidget {
               title: 'Faixa de graduação',
               subtitle: aluno.grade,
             ),
+            Divider(color: Colors.red),
             AlunoListTile(
               leading: CircleAvatar(
                 child: Icon(Icons.child_care),
@@ -42,6 +44,7 @@ class AlunoDetailsScreen extends StatelessWidget {
               subtitle: aluno.birthDate,
               subtitleFormatter: (date) => DateFormat('dd/MM/yyyy').format(date),
             ),
+            Divider(color: Colors.red),
             AlunoListTile(
               leading: CircleAvatar(
                 child: Icon(Icons.calendar_today),
@@ -50,6 +53,7 @@ class AlunoDetailsScreen extends StatelessWidget {
               subtitle: aluno.startDate,
               subtitleFormatter: (date) => DateFormat('dd/MM/yyyy').format(date),
             ),
+            Divider(color: Colors.red),
             AlunoListTile(
               leading: CircleAvatar(
                 child: Icon(Icons.phone_iphone),
@@ -58,6 +62,7 @@ class AlunoDetailsScreen extends StatelessWidget {
               subtitle: aluno.phoneNumber,
               subtitleFormatter: (number) => '(${number.toString().substring(0, 2)}) ${number.toString().substring(2, 6)}-${number.toString().substring(6)}',
             ),
+            Divider(color: Colors.red),
             AlunoListTile(
               leading: CircleAvatar(
                 child: Icon(Icons.emergency_share),
