@@ -1,4 +1,3 @@
-import 'package:dom_control/pages/screens/home_page/searchBar/search_bar_controller.dart';
 import 'package:flutter/material.dart';
 
 const Color primaryColor = Colors.red;
@@ -8,6 +7,8 @@ ThemeData myTheme = ThemeData(
   appBarTheme: _buildAppBarTheme(),
   buttonTheme: _buildButtonTheme(),
   textTheme: _buildTextTheme(),
+  inputDecorationTheme: _buildInputDecorationTheme(),
+  elevatedButtonTheme: _buildElevatedButtonTheme(),
 );
 
 AppBarTheme _buildAppBarTheme() {
@@ -53,34 +54,75 @@ TextTheme _buildTextTheme() {
   );
 }
 
-Padding buildSearchBar(SearchBarController searchBarController) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-    child: TextField(
-      controller: searchBarController.searchController,
-      decoration: InputDecoration(
-        hintText: 'Pesquisar alunos', // Texto de dica
-        prefixIcon: Icon(
-          Icons.search,
-          color: Colors.red, // Cor do ícone de pesquisa
-        ),
-        filled: true,
-        fillColor: Colors.white, // Cor de fundo do campo de texto
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)), // Bordas arredondadas
-          borderSide: BorderSide.none, // Remove a borda padrão
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-          borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando habilitado
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-          borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando focado
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0), // Padding interno
-      ),
+InputDecorationTheme _buildInputDecorationTheme() {
+  return const InputDecorationTheme(
+    fillColor: Colors.white70,
+    filled: true,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+      borderSide: BorderSide(color: Colors.red, width: 2.0),
     ),
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   );
 }
 
+class MyTheme {
+  static InputDecoration inputDecoration(String hintText) {
+    return InputDecoration(
+      hintText: hintText,
+      fillColor: Colors.white70, // Cor de fundo do campo de texto
+      filled: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)), // Bordas arredondadas
+        borderSide: BorderSide(color: Colors.red, width: 2.0), // Definindo a cor da borda como vermelha
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando habilitado
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando focado
+      ),
+      contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    );
+  }
+
+  static InputDecoration dateInputDecoration(String hintText) {
+    return InputDecoration(
+      hintText: hintText,
+      fillColor: Colors.white70, // Cor de fundo do campo de texto
+      filled: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)), // Bordas arredondadas
+        borderSide: BorderSide(color: Colors.red, width: 2.0), // Definindo a cor da borda como vermelha
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando habilitado
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando focado
+      ),
+      contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0), // Padding interno
+    );
+  }
+}
+ElevatedButtonThemeData _buildElevatedButtonTheme() {
+  return ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.red,
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      padding: const EdgeInsets.all(20.0),
+      textStyle: TextStyle(
+        color: Colors.white,
+          fontWeight: FontWeight.bold,
+        fontSize: 14,
+      )
+    ),
+  );
+}

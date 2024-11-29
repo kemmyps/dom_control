@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
+import '../pages/myTheme.dart';
+
 Widget buildTextFormField({
   required TextEditingController controller,
   required String labelText,
@@ -46,10 +48,25 @@ Widget buildDatePickerRow({
   return Row(
     children: [
       Expanded(
-        child: Text(
-          selectedDate != null
-              ? DateFormat('dd/MM/yyyy').format(selectedDate)
-              : 'Nenhuma data selecionada',
+        child: TextFormField(
+          controller: TextEditingController(
+            text: selectedDate != null
+                ? DateFormat('dd/MM/yyyy').format(selectedDate)
+                : '',
+          ),
+          decoration: MyTheme.dateInputDecoration(dateLabelText),
+          readOnly: true,
+          onTap: () async {
+            final DateTime? picked = await showDatePicker(
+              context: context,
+              initialDate: selectedDate ?? DateTime.now(),
+              firstDate: DateTime(1940),
+              lastDate: DateTime.now(),
+            );
+            if (picked != null && picked != selectedDate) {
+              onDateSelected(picked);
+            }
+          },
         ),
       ),
       IconButton(
@@ -58,8 +75,8 @@ Widget buildDatePickerRow({
           final DateTime? picked = await showDatePicker(
             context: context,
             initialDate: selectedDate ?? DateTime.now(),
-            firstDate: DateTime(1900),
-            lastDate: DateTime(2100),
+            firstDate: DateTime(1940),
+            lastDate: DateTime.now(),
           );
           if (picked != null && picked != selectedDate) {
             onDateSelected(picked);

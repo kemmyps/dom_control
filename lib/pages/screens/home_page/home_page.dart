@@ -112,11 +112,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: const Text(
                     'Salvar',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
                   ),
                 ),
               ),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:dom_control/pages/services/firestore.dart';
-
 import '../../widgets/form_fields.dart';
+import 'package:dom_control/pages/myTheme.dart';
 
 class AddAlunoScreen extends StatefulWidget {
   final FirestoreService firestoreService;
   final String? studentId;
 
-  const AddAlunoScreen({super.key, required this.firestoreService, this.studentId});
+  AddAlunoScreen({required this.firestoreService, this.studentId});
 
   @override
-  State<AddAlunoScreen> createState() => _AddAlunoScreenState();
+  _AddAlunoScreenState createState() => _AddAlunoScreenState();
 }
 
 class _AddAlunoScreenState extends State<AddAlunoScreen> {
@@ -26,7 +26,6 @@ class _AddAlunoScreenState extends State<AddAlunoScreen> {
   bool isEdit = false;
   String? studentId;
   static const double paddingValue = 16.0;
-
   String get appBarTitle => isEdit ? 'Editar Aluno' : 'Adicionar Aluno';
 
   @override
@@ -45,10 +44,10 @@ class _AddAlunoScreenState extends State<AddAlunoScreen> {
       setState(() {
         _nameStudentController.text = aluno.nameStudent;
         _gradeController.text = aluno.grade;
-        _selectedBirthDate = aluno.birthDate;
-        _selectedStartDate = aluno.startDate;
         _phoneController.text = aluno.phoneNumber;
         _emergencyPhoneController.text = aluno.emergencyPhoneNumber;
+        _selectedBirthDate = aluno.birthDate;
+        _selectedStartDate = aluno.startDate;
         _observacoesMedicasController.text = aluno.observacoesMedicas;
         _observacoesProfessorController.text = aluno.observacoesProfessor;
       });
@@ -68,16 +67,28 @@ class _AddAlunoScreenState extends State<AddAlunoScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildTextFormField(
+              TextFormField(
                 controller: _nameStudentController,
-                labelText: 'Nome',
-                validatorMessage: 'Por favor, insira o nome do aluno',
+                decoration: MyTheme.inputDecoration('Nome'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o nome do aluno';
+                  }
+                  return null;
+                },
               ),
-              buildTextFormField(
+              const SizedBox(height: 10), // Espaço entre os campos
+              TextFormField(
                 controller: _gradeController,
-                labelText: 'Faixa',
-                validatorMessage: 'Por favor, insira a faixa do aluno',
+                decoration: MyTheme.inputDecoration('Faixa'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira a faixa do aluno';
+                  }
+                  return null;
+                },
               ),
+              const SizedBox(height: 10), // Espaço entre os campos
               const Text(
                 'Data de nascimento do aluno:',
                 style: TextStyle(fontSize: 16),
@@ -92,11 +103,18 @@ class _AddAlunoScreenState extends State<AddAlunoScreen> {
                   });
                 },
               ),
-              buildPhoneNumberFormField(
+              const SizedBox(height: 10), // Espaço entre os campos
+              TextFormField(
                 controller: _emergencyPhoneController,
-                labelText: 'Telefone de Emergência',
-                validatorMessage: 'Por favor, insira o número de telefone de emergência',
+                decoration: MyTheme.inputDecoration('Telefone de Emergência'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o número de telefone de emergência';
+                  }
+                  return null;
+                },
               ),
+              const SizedBox(height: 10), // Espaço entre os campos
               const Text(
                 'Data de início das aulas do aluno:',
                 style: TextStyle(fontSize: 16),
@@ -104,28 +122,41 @@ class _AddAlunoScreenState extends State<AddAlunoScreen> {
               buildDatePickerRow(
                 context: context,
                 selectedDate: _selectedStartDate,
-                dateLabelText: 'Data de início das aulas do aluno',
+                dateLabelText: 'Data de Início',
                 onDateSelected: (date) {
                   setState(() {
                     _selectedStartDate = date;
                   });
                 },
               ),
-              buildPhoneNumberFormField(
+              const SizedBox(height: 10), // Espaço entre os campos
+              TextFormField(
                 controller: _phoneController,
-                labelText: 'Telefone',
-                validatorMessage: 'Por favor, insira o número de telefone',
+                decoration: MyTheme.inputDecoration('Telefone'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o número de telefone';
+                  }
+                  return null;
+                },
               ),
-              buildTextFormField(
+              const SizedBox(height: 10), // Espaço entre os campos
+              TextFormField(
                 controller: _observacoesMedicasController,
-                labelText: 'Observações Médicas',
-                validatorMessage: 'Opcional',
+                decoration: MyTheme.inputDecoration('Observações Médicas'),
+                validator: (value) {
+                  return null; // Campo opcional
+                },
               ),
-              buildTextFormField(
+              const SizedBox(height: 10), // Espaço entre os campos
+              TextFormField(
                 controller: _observacoesProfessorController,
-                labelText: 'Observações do Professor',
-                validatorMessage: 'Opcional',
+                decoration: MyTheme.inputDecoration('Observações do Professor'),
+                validator: (value) {
+                  return null; // Campo opcional
+                },
               ),
+              const SizedBox(height: 10), // Espaço entre os campos
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate() &&
