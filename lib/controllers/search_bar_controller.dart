@@ -7,8 +7,11 @@ class SearchBarController extends ChangeNotifier {
 
   TextEditingController get searchController => _searchController;
 
-  void updateSearchText(String newText) {
-    _searchController.text = newText;
+  SearchBarController() {
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  void _onSearchChanged() {
     notifyListeners();
   }
 
@@ -16,6 +19,7 @@ class SearchBarController extends ChangeNotifier {
 
   @override
   void dispose() {
+    _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
     super.dispose();
   }

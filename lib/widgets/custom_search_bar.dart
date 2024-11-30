@@ -1,5 +1,5 @@
-import 'package:dom_control/pages/screens/home_page/searchBar/search_bar_controller.dart';
 import 'package:flutter/material.dart';
+import '../controllers/search_bar_controller.dart';
 
 class CustomSearchBar extends StatelessWidget {
   final SearchBarController searchBarController;
@@ -13,26 +13,26 @@ class CustomSearchBar extends StatelessWidget {
       child: TextField(
         controller: searchBarController.searchController,
         decoration: InputDecoration(
-          hintText: 'Pesquisar alunos', // Texto de dica
+          hintText: 'Pesquisar alunos',
           prefixIcon: const Icon(
             Icons.search,
-            color: Colors.red, // Cor do ícone de pesquisa
+            color: Colors.red,
           ),
           filled: true,
-          fillColor: Colors.white70, // Cor de fundo do campo de texto
+          fillColor: Colors.white70,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30.0)), // Bordas arredondadas
-            borderSide: BorderSide.none, // Remove a borda padrão
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
-            borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando habilitado
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
-            borderSide: BorderSide(color: Colors.red, width: 2.0), // Borda quando focado
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
           ),
-          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0), // Padding interno
+          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         ),
       ),
     );

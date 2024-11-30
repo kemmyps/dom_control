@@ -1,6 +1,9 @@
-import 'package:dom_control/pages/screens/home_page/home_page.dart';
-import 'package:dom_control/pages/services/firestore.dart';
+import 'package:dom_control/services/firestore_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
+import 'new_user_screen.dart';
+import '../services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,17 +16,26 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FirestoreService firestoreService = FirestoreService();
+  final AuthService _authService = AuthService();
 
-  void _login() {
-    // Navegar para a tela inicial sem passar o username
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomePage(
-          firestoreService: firestoreService,
-        ),
-      ),
+  void _login() async {
+    User? user = await _authService.signInWithEmailAndPassword(
+      _emailController.text,
+      _passwordController.text,
     );
+    if (user != null) {
+      // Navegar para a tela inicial
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(firestoreService: firestoreService),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao fazer login')),
+      );
+    }
   }
 
   @override
@@ -69,7 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
                     controller: _emailController,
-                    obscureText: true,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.grey[200], // Cor de fundo do campo de texto
@@ -138,13 +149,10 @@ class _LoginPageState extends State<LoginPage> {
                 // New user section
                 GestureDetector(
                   onTap: () {
-                    // Navigate to another page
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => NewUserScreen(),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NewUserScreen()),
+                    );
                   },
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
@@ -156,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                      SizedBox(width: 5), // Spacing between texts
+                      SizedBox(width: 5),
                       Text(
                         'Create Account',
                         style: TextStyle(

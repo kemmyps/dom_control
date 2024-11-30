@@ -1,5 +1,5 @@
-import 'package:dom_control/pages/screens/home_page/aluno_list_tile.dart';
-import 'package:dom_control/pages/services/firestore.dart';
+import 'package:dom_control/widgets/aluno_list_tile.dart';
+import 'package:dom_control/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

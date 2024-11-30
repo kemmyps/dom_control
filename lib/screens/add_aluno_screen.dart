@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dom_control/pages/services/firestore.dart';
-import '../../widgets/form_fields.dart';
-import 'package:dom_control/pages/myTheme.dart';
+import 'package:dom_control/services/firestore_service.dart';
+import '../widgets/form_fields.dart';
+import 'package:dom_control/themes/myTheme.dart';
 
 class AddAlunoScreen extends StatefulWidget {
   final FirestoreService firestoreService;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../add_aluno_screen.dart';
-import '../../services/firestore.dart';
+import '../screens/add_aluno_screen.dart';
+import '../services/firestore_service.dart';
 
 
 class AddAlunoButton extends StatelessWidget {

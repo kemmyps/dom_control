@@ -1,7 +1,8 @@
-import 'package:dom_control/pages/screens/add_aluno_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:dom_control/pages/services/firestore.dart';
-import '../aluno_details_screen.dart';
+import 'package:dom_control/services/firestore_service.dart';
+import '../screens/add_aluno_screen.dart';
+import '../screens/aluno_details_screen.dart';
+
 
 class AlunoList extends StatelessWidget {
   final FirestoreService firestoreService;
@@ -28,7 +29,7 @@ class AlunoList extends StatelessWidget {
           return const Center(child: Text('No students found'));
         }
 
-        final filteredAlunos = (showAll || searchText == null || searchText.isEmpty)
+        final filteredAlunos = (showAll || searchText.isEmpty)
             ? alunos
             : alunos.where((aluno) {
           final nameLower = aluno.nameStudent.toLowerCase();
