@@ -8,8 +8,8 @@ Este projeto visa criar um aplicativo para auxiliar na organização e gestão d
 
 * **Cadastro de usuários:** Criação de contas de usuários com autenticação segura.
 * **Criação e edição de Alunos:** Adicionar, editar e excluir alunos.
-* **Organização de alunos por categorias:** Agrupar alunos em diferentes categorias para facilitar a gestão.
-
+* **Busca de alunos:** Busca por nome de alunos para facilitar a gestão.
+  <img height="500" src="/Users/kemmyps/workspace/dom_control/assets/images/fluxo.png" width="500"/>
 **Funcionalidades Futuras e Melhorias:**
 
 * **Controle de frequência:**
